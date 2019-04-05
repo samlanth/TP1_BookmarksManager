@@ -9,6 +9,7 @@ namespace TP1_BookmarksManager.Controllers
 {
     public class UsersController : Controller
     {
+        //test
         private Models.BookmarksDBEntities DB = new Models.BookmarksDBEntities();
 
         protected override void Dispose(bool disposing)
