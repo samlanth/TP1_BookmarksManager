@@ -1,0 +1,41 @@
+﻿@model TP1_BookmarksManager.Models.BookmarkItemView
+@using TP1_BookmarksManager.Models;
+@{
+    ViewBag.Title = "Details";
+    User loggedUser = OnlineUsers.GetSessionUser();
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Bookmark</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerShip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OwnerShip)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

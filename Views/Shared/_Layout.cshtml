@@ -26,8 +26,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (loggedUser == null)
                     {
 
@@ -36,9 +34,20 @@
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Bookmarks", "Index", "Bookmarks")</li>
-                        <li>@Html.ActionLink(loggedUser.GetFullName(), "Profil", "Users")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
+                        if (loggedUser.Admin == true)
+                        {
+                            <li>@Html.ActionLink("Administrator", "Index", "Administrator")</li>
+                            <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+                            <li>@Html.ActionLink("Bookmarks", "Index", "Bookmarks")</li>
+                            <li>@Html.ActionLink(loggedUser.GetFullName(), "Profil", "Users")</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Bookmarks", "Index", "Bookmarks")</li>
+                            <li>@Html.ActionLink(loggedUser.GetFullName(), "Profil", "Users")</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Users")</li>
+                        }
                     }
 
                 </ul>

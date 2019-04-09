@@ -177,6 +177,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Add.png" />
+    <Content Include="Images\Back.png" />
+    <Content Include="Images\blank.png" />
+    <Content Include="Images\Delete.png" />
+    <Content Include="Images\Details.png" />
+    <Content Include="Images\Edit.png" />
+    <Content Include="Images\important.png" />
+    <Content Include="Images\OffLine.png" />
+    <Content Include="Images\OnLine.png" />
+    <Content Include="Images\Sort.png" />
+    <Content Include="Images\SortAsc.png" />
+    <Content Include="Images\SortDesc.png" />
     <Content Include="Models\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -219,16 +231,20 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Users\Subscribe.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
     <Content Include="Views\Users\Profil.cshtml" />
+    <Content Include="Views\Bookmarks\Create.cshtml" />
+    <Content Include="Views\Bookmarks\Edit.cshtml" />
+    <Content Include="Views\Bookmarks\Delete.cshtml" />
+    <Content Include="Views\Bookmarks\Details.cshtml" />
+    <Content Include="Views\Administrator\Delete.cshtml" />
+    <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Views\Bookmarks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Administrator\" />
     <Folder Include="Views\Autorization\" />
-    <Folder Include="Views\Bookmarks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<TP1_BookmarksManager.Models.Bookmark>
+@using TP1_BookmarksManager.Models;
+@{
+    ViewBag.Title = "Index";
+    User loggedUser = OnlineUsers.GetSessionUser();
+    string category = (string)Session["BookmarkFilterByCategory"];
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Helper.SortAction(Url, "Sort", Html.DisplayNameFor(model => model.Name).ToString(), "Bookmarks", "Name")
+        </th>
+        <th>
+            @Helper.SortAction(Url, "Sort", Html.DisplayNameFor(model => model.Url).ToString(), "Bookmarks", "Url")
+        </th>
+        <th>
+            @Helper.SortAction(Url, "Sort", Html.DisplayNameFor(model => model.Category).ToString(), "Bookmarks", "Category")
+            <select id="categoryFilterList">
+                <option value="-1" @(category == "All" ? "selected" : "")>All category</option>
+                @foreach (var cat in Model)
+                {
+                    <option value="@(cat.Category.Id)" @(category == cat.Category.Name ? "selected" : "")>@cat.ToString()</option>
+                }
+            </select>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User)
+        </th>
+        <th>
+            @Helper.IconControllerAction(Url, "Bookmarks", "Create", "Add", "Ajouter un Bookmark", "Right")
+        </th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a href="@item.Url">@item.Url</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FirstName)
+            </td>
+            <td>
+                @if (loggedUser.Admin == false)
+                {
+                    <a href="@Url.Action("Details", "Bookmarks", new { id = item.Id })">
+                        <img src='@Url.Content(@"~/Content/UI_Images/" + "Details" + ".png")'
+                             class="Icon" data-toggle="tooltip"
+                             data-placement="Right"
+                             title="Voir les Details" />
+                    </a>
+                    //@Html.ActionLink("Details", "Details", new { id = item.Id })
+                }
+                else
+                {
+                    //@Helper.IconControllerAction(Url, "Bookmarks", "Edit", "Edit", "Editer les informations", "Right")
+                    <a href="@Url.Action("Edit", "Bookmarks", new { id = item.Id })">
+                        <img src='@Url.Content(@"~/Content/UI_Images/" + "Edit" + ".png")'
+                             class="Icon" data-toggle="tooltip"
+                             data-placement="Right"
+                             title="Editer un bookmark" />
+                    </a>
+                    //@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                    <a href="@Url.Action("Details", "Bookmarks", new { id = item.Id })">
+                        <img src='@Url.Content(@"~/Content/UI_Images/" + "Details" + ".png")'
+                             class="Icon" data-toggle="tooltip"
+                             data-placement="Right"
+                             title="Voir les Details" />
+                    </a>
+                    //@Html.ActionLink("Details", "Details", new { id = item.Id })
+                    <a href="@Url.Action("Delete", "Bookmarks", new { id = item.Id })">
+                        <img src='@Url.Content(@"~/Content/UI_Images/" + "Delete" + ".png")'
+                             class="Icon" data-toggle="tooltip"
+                             data-placement="Right"
+                             title="Supprimer un bookmark" />
+                    </a>
+
+                    //@Helper.IconControllerAction(Url, "Bookmarks", "Delete", "Delete", "Delete un bookmark", "Right")
+
+                    //@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', AttachEventHandlers);
+
+        function AttachEventHandlers() {
+            document.querySelector('#categoryfilterList').addEventListener('change', (event) => {
+                document.location = "@Url.Action("FilterCategory")" + "?category=" + event.target.value;
+            });
+        }
+
+    </script>
+}

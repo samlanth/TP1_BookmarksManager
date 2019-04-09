@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TP1_BookmarksManager.Models.User>
+@using TP1_BookmarksManager.Models;
+@{
+    ViewBag.Title = "Index";
+    SexType TheSex = SexType.Homme;
+}
+<h2>User List</h2>
+<table class="table">
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sex)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @foreach (User user in (List<User>)HttpRuntime.Cache["OnLineUsers"])
+                {
+                    //if (user.Id == userId)
+                    //return true;
+                }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @if (item.Sex == 0)
+            {
+                TheSex = SexType.Homme;
+            }
+            else if (item.Sex == 1)
+            {
+                TheSex = SexType.Femme;
+            }
+            else
+            {
+                TheSex = SexType.Autre;
+
+            }
+            @Html.DisplayFor(modelItem => TheSex)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+    }
+
+</table>
