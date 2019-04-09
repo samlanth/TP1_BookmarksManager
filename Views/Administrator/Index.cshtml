@@ -24,13 +24,12 @@
     @foreach (var item in Model)
     {
     <tr>
-        <td>
             @foreach (User user in (List<User>)HttpRuntime.Cache["OnLineUsers"])
                 {
                     //if (user.Id == userId)
                     //return true;
                 }
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.CreationDate)
         </td>
